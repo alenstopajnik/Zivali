@@ -1,43 +1,54 @@
 package zivali;
 public class Pes extends Zival {
-    private String pasma;
-    private int sitost;
+    private double masa;
+    private int casSprehodov;
+    private int steviloObrokov;
 
-    public Pes(String ime, int starost, String barva, String pasma, int sitost){
-        super(ime, starost, barva);
-        this.pasma=pasma;
-        this.sitost=sitost;
+    public Pes(String ime, int starost, double masa, int casSprehodov, int steviloObrokov ){
+        super(ime, starost);
+        this.masa=masa;
+        this.casSprehodov=casSprehodov;
+        this.steviloObrokov=steviloObrokov;
     }
 
-    public String getPasma(){
-        return pasma;
+    public double getMasa(){
+        return masa;
     }
 
-    public int getSitost() {
-        return sitost;
-    }
-        
-    public void lajanje() {
-        System.out.println("Woof woof!");
-    }  
-
-    public boolean lakota() {
-        return sitost < 4;
+    public double getCasSprehodov(){
+        return casSprehodov;
     }
 
-    public void nahrani() {
-        if (lakota()) {
-            sitost = 10;
+    public int getSteviloObrokov(){
+        return steviloObrokov;
+    }
+
+    public double vrednostRER(){ /* Izracun vrednosti RER (Resting Energy Requirement), ki je odvisen od mase psa. */
+       return ( 70 * (Math.pow(getMasa(), 0.75)) );
+    }
+
+    public boolean mladic(){ /* Program preveri ali je pes mladic (mlajsi od dveh let) */
+        return getStarost() < 2;
+    }
+
+    public double mnozenec(){ /* Ce je pes mladic, se uporabi visja vrednost, saj potrebuje vec kalorij za svojo rast. */
+        if (mladic()){
+            return 2.2;
+        }
+        else{
+            return 1.6;
         }
     }
-
-    public void sprehod() {
-        if (lakota()) return;
-            sitost -= 5;
-    }
-
-    public String toString(){
-        return sitost;
-    }
     
+    public double priporocenDnevniVnosKalorij(){ /* Program izracuna priporocen dnevni vnos kalorij za psa. */
+        return mnozenec() * vrednostRER();
+    }
+
+    public double porabaKalorij(){ /* Program izracuna koliko kalorij pes porabi na sprehodu. Poraba je odvisna od mase in trajanja sprehoda. */
+        return getCasSprehodov() * ((getMasa() * 64) / 10);
+    }
+
+    public double kalorijeNaObrok(){ /* Program izracuna koliko kalorij mora vsebovati posamezen obrok. */
+        return ( ( porabaKalorij() + priporocenDnevniVnosKalorij() ) / getSteviloObrokov() );
+    }   
 }

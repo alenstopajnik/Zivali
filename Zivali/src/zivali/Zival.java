@@ -1,13 +1,11 @@
 package zivali;
 public class Zival {
     private String ime;
-    private String barva;
     private int starost;
 
-    public Zival(String ime, int starost, String barva){
+    public Zival(String ime, int starost){
         this.ime=ime;
         this.starost=starost;
-        this.barva=barva;
     }
 
     public Zival(){}
@@ -20,7 +18,11 @@ public class Zival {
         return starost;
     }
 
-    public String getBarva() {
-	    return barva;
-    }    
+    public void setIme() {
+        this.ime=ime;
+    }
+
+    public void setStarost() {
+        this.ime=ime;
+    }
 }

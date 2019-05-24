@@ -1,18 +1,17 @@
 package zivali;
 public class Main {
     public static void main(String[] args) {       
-        Pes p = new Pes("Rex", 5, "rjava", "zlati prinasalec", 2);
-        izpis(p);
-        System.out.println("Pasma je "+ p.getPasma() + ".");
-        p.nahrani();
-        p.sprehod();    
-        System.out.println("Sitost je " + p.getSitost() + ".");
-        p.lajanje();           
+        Pes p = new Pes("Rex", 5, 20, 1, 3);
+
+        izpis(p); /* Izvede metodo izpis, ki izpise ime in starost. */
+
+        System.out.println( "Priporocen dnevni vnos kalorij je: " + ((int)(p.priporocenDnevniVnosKalorij()) +   /* Program izpise priporocen dnevni vnos kalorij, porabo kalorij in priporoceno stevilo kalorij na obrok. */
+         ", poraba kalorij znasa: " + ((int)(p.porabaKalorij()) + 
+         ", zato je priporoceno stevilo kalorij na obrok: " + ((int)(p.kalorijeNaObrok()) + "." ))));
     }
 
     private static void izpis(Zival x) {
         System.out.println("Ime je " + x.getIme() + ".");
-	    System.out.println("Starost je " + x.getStarost() + " let.");
-	    System.out.println("Barva je " + x.getBarva() + ".");
+	    System.out.println("Starost je " + x.getStarost() + ".");
     }
 }
